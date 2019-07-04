@@ -13,4 +13,8 @@ Imports:
     dplyr
 RoxygenNote: 6.1.1
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown,
+    kiwisR
+VignetteBuilder: knitr

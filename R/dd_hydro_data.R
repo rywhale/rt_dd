@@ -33,6 +33,7 @@
 #'   \item{DISCHARGE}{Discharge measurement (cms)}
 #'   \item{QA_QC_DIS}{Quality assurance/quality control flag for the discharge (1 = preliminary, 2 = reviewed, 3 = checked, 4 = approved)}
 #' }
+#' @export
 #' @examples
 #' dd_hydro_data(station_id = "02HA006", prov_terr = "ON")
 #'
