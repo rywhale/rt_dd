@@ -23,6 +23,15 @@ dd_hydro_meta(prov_terr)
   \item{YT}{Yukon}
 }}
 }
+\value{
+Tibble with following columns \describe{
+  \item{STATION_ID}{WSC station identifier. See \code{?dd_hydro_meta}}
+  \item{STATION_NAME}{Official WSC station name}
+  \item{STATION_LAT}{Station latitude}
+  \item{STATION_LON}{Station longitude}
+  \item{PROV_TERR}{Province/territory short code}
+}
+}
 \description{
 Get metadata for available stations, filter by province or territory.
 #' See \href{https://dd.weather.gc.ca/hydrometric/doc/hydrometric_README.txt}{DataMart documentation} for more info.

@@ -16,7 +16,15 @@ devtools::load_all()
 
 # rtdd
 
-Bring near real-time hydrometric data from [the Government of Canada's DataMart service](https://dd.weather.gc.ca/hydrometric/) into R.
+Bring near real-time hydrometric data from [the Government of Canada's DataMart service](https://dd.weather.gc.ca/hydrometric/) into R. 
+
+Note that much of this funcionality is built into [`tidyhydat`](https://github.com/ropensci/tidyhydat). Use that if you can. 
+
+## Installing
+```{r eval=FALSE}
+if(!requireNamespace("remotes")) install.packages("remotes")
+remotes::install_github('rywhale/rtdd')
+```
 
 ## Station Metadata
 ### All Stations
@@ -38,8 +46,8 @@ ont_stn_meta <- dd_hydro_meta(prov_terr = "ON")
 You can retrieve either an individual station's data or all the data available for given a province or territory.
 There are also multiple update intervals available:
 
-* *hourly* - (Default) Last 2 complete days of data plus the current incomplete day
-* *daily*  - Last 30 complete days of data plus the current incomplete day
+* **hourly** - (Default) Last 2 complete days of data plus the current incomplete day
+* **daily** - Last 30 complete days of data plus the current incomplete day
 
 ### Single Station
 ```{r}
@@ -53,3 +61,5 @@ You can grab all the data for a given province/territory by setting `all_stns=TR
 all_stn_data <- dd_hydro_data(prov_terr = "YT", all_stns = TRUE)
 str(all_stn_data)
 ```
+
+

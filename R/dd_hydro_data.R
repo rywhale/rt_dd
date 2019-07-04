@@ -25,7 +25,7 @@
 #'   \item{FALSE}{(Default) Only return data for stations specified with station_id}
 #'   \item{TRUE}{Return data for all stations in region specified with prov_terr}
 #' }
-#' @return Data.frame with following columns \describe{
+#' @return Tibble with following columns \describe{
 #'   \item{STATION_ID}{WSC station identifier. See \code{?dd_hydro_meta}}
 #'   \item{TIMESTAMP}{Timestamp for measurement in UTC}
 #'   \item{WATER_LEVEL}{Water level measurement (m). See WSC website for datumn info.}
@@ -33,6 +33,8 @@
 #'   \item{DISCHARGE}{Discharge measurement (cms)}
 #'   \item{QA_QC_DIS}{Quality assurance/quality control flag for the discharge (1 = preliminary, 2 = reviewed, 3 = checked, 4 = approved)}
 #' }
+#' @examples
+#' dd_hydro_data(station_id = "02HA006", prov_terr = "ON")
 #'
 
 dd_hydro_data <- function(station_id, prov_terr, update_interval = "hourly", all_stns = FALSE) {
@@ -94,7 +96,9 @@ dd_hydro_data <- function(station_id, prov_terr, update_interval = "hourly", all
   # have no purpose (future use)
   data_tab <- dplyr::select(
     .data = data_tab,
-    -c(GRADE_WL, SYMBOL_WL, GRADE_DIS, SYMBOL_DIS)
+    -c("GRADE_WL", "SYMBOL_WL", "GRADE_DIS", "SYMBOL_DIS")
     )
-  return(data_tab)
+
+  # Return tibble portion of object
+  return(data_tab[])
 }

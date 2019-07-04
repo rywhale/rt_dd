@@ -37,7 +37,7 @@ dd_hydro_data(station_id, prov_terr, update_interval = "hourly",
 }}
 }
 \value{
-Data.frame with following columns \describe{
+Tibble with following columns \describe{
   \item{STATION_ID}{WSC station identifier. See \code{?dd_hydro_meta}}
   \item{TIMESTAMP}{Timestamp for measurement in UTC}
   \item{WATER_LEVEL}{Water level measurement (m). See WSC website for datumn info.}
@@ -49,4 +49,8 @@ Data.frame with following columns \describe{
 \description{
 Get near real-time data for Water Survey of Canada gauges via DataMart.
 #' See \href{https://dd.weather.gc.ca/hydrometric/doc/hydrometric_README.txt}{DataMart documentation} for more info.
+}
+\examples{
+dd_hydro_data(station_id = "02HA006", prov_terr = "ON")
+
 }

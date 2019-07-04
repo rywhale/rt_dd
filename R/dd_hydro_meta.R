@@ -16,6 +16,13 @@
 #'   \item{BC}{British Columbia}
 #'   \item{YT}{Yukon}
 #' }
+#' @return Tibble with following columns \describe{
+#'   \item{STATION_ID}{WSC station identifier. See \code{?dd_hydro_meta}}
+#'   \item{STATION_NAME}{Official WSC station name}
+#'   \item{STATION_LAT}{Station latitude}
+#'   \item{STATION_LON}{Station longitude}
+#'   \item{PROV_TERR}{Province/territory short code}
+#' }
 #' @export
 #' @examples
 #' dd_hydro_meta(prov_terr = "ON")
@@ -69,6 +76,12 @@ dd_hydro_meta <- function(prov_terr){
       )
   }
 
-  return(meta_tab)
+  meta_tab <- dplyr::select(
+    meta_tab,
+    -c("TIMEZONE")
+  )
+
+  # Return tibble portion of object
+  return(meta_tab[])
 
 }
