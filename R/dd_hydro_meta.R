@@ -1,7 +1,7 @@
 #' dd_hydro_meta
 #' @description Get metadata for available stations, filter by province or territory.
-#' @param prov_terr Province/territory short code options are
-#' \describe{
+#' #' See \href{https://dd.weather.gc.ca/hydrometric/doc/hydrometric_README.txt}{DataMart documentation} for more info.
+#' @param prov_terr Province/territory short code options are \describe{
 #'   \item{NB}{New Brunswick}
 #'   \item{PE}{Prince Edward Island}
 #'   \item{NS}{Nova Scotia}
@@ -41,7 +41,7 @@ dd_hydro_meta <- function(prov_terr){
 
   # Check for error in response
   if(sum(grepl("error", class(meta_res)))){
-    stop("Query returned error: ", raw$message)
+    stop("Query returned error: ", meta_res$message)
   }
 
   # Get text from response
@@ -63,8 +63,10 @@ dd_hydro_meta <- function(prov_terr){
       stop("Invalid region code. See ?dd_hydro_meta")
     }
 
-    meta_tab <- dplyr::filter(meta_tab, PROV_TERR == prov_terr)
-
+    meta_tab <- dplyr::filter(
+      .data = meta_tab,
+      PROV_TERR == prov_terr
+      )
   }
 
   return(meta_tab)

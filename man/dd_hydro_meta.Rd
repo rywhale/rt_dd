@@ -7,8 +7,7 @@
 dd_hydro_meta(prov_terr)
 }
 \arguments{
-\item{prov_terr}{Province/territory short code options are
-\describe{
+\item{prov_terr}{Province/territory short code options are \describe{
   \item{NB}{New Brunswick}
   \item{PE}{Prince Edward Island}
   \item{NS}{Nova Scotia}
@@ -26,6 +25,7 @@ dd_hydro_meta(prov_terr)
 }
 \description{
 Get metadata for available stations, filter by province or territory.
+#' See \href{https://dd.weather.gc.ca/hydrometric/doc/hydrometric_README.txt}{DataMart documentation} for more info.
 }
 \examples{
 dd_hydro_meta(prov_terr = "ON")

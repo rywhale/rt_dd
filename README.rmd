@@ -10,6 +10,46 @@ knitr::opts_chunk$set(
   comment = "#>",
   out.width = "100%"
 )
+# Load package functions
+devtools::load_all()
 ```
 
-## rtdd
+# rtdd
+
+Bring near real-time hydrometric data from [the Government of Canada's DataMart service](https://dd.weather.gc.ca/hydrometric/) into R.
+
+## Station Metadata
+### All Stations
+By default, `dd_hydro_meta` will return metadata for all avaiable stations, across Canada
+
+```{r}
+stn_meta <- dd_hydro_meta()
+str(stn_meta)
+```
+
+### By Province/Territory
+You can also filter by a province or territory short code. See `?dd_hydro_meta` for valid options
+
+```{r}
+ont_stn_meta <- dd_hydro_meta(prov_terr = "ON")
+```
+
+## Station Data
+You can retrieve either an individual station's data or all the data available for given a province or territory.
+There are also multiple update intervals available:
+
+* *hourly* - (Default) Last 2 complete days of data plus the current incomplete day
+* *daily*  - Last 30 complete days of data plus the current incomplete day
+
+### Single Station
+```{r}
+stn_data <- dd_hydro_data(station_id = "05QB002", prov_terr = "ON")
+str(stn_data)
+```
+
+### All Stations in Province/Territory
+You can grab all the data for a given province/territory by setting `all_stns=TRUE`. 
+```{r}
+all_stn_data <- dd_hydro_data(prov_terr = "YT", all_stns = TRUE)
+str(all_stn_data)
+```
