@@ -1,0 +1,15 @@
+---
+output: 
+  github_document:
+    html_preview: true
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%"
+)
+```
+
+## rtdd
