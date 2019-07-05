@@ -86,12 +86,15 @@ dd_hydro_data <- function(station_id, prov_terr, update_interval = "hourly", all
   data_cont <- httr::content(data_res, "text")
 
   # Parse text
-  data_tab <- readr::read_csv(
+  data_tab <- tryCatch({
+    readr::read_csv(
     data_cont,
     col_names = cols,
     # First row is messy headers
     skip = 1
-  )
+  )}, error = function(e){
+    stop("Could not locate data file for station ", station_id)
+  })
 
   # Get rid of columns that currently
   # have no purpose (future use)
