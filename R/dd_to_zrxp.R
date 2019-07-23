@@ -28,21 +28,21 @@ dd_to_zrxp <- function(stn_data, stn_import_num, min_timestamp) {
     stop("Station data should have rows of data")
   }
 
-  stn_data <- dplyr::mutate(
-    stn_data,
-    Timestamp = gsub("-|:| ", "", Timestamp)
-  )
-
   if(!missing(min_timestamp)){
 
     if("POSIXct" %in% class(min_timestamp)){
       stn_data <- dplyr::filter(
-        stn_data >= min_timestamp
+        .data = stn_data,
+        Timestamp >= min_timestamp
       )
 
     }
-
   }
+
+  stn_data <- dplyr::mutate(
+    .data = stn_data,
+    Timestamp = gsub("-|:| ", "", Timestamp)
+  )
 
   out_dat <- purrr::map(
     stn_data$Timestamp,
@@ -54,8 +54,6 @@ dd_to_zrxp <- function(stn_data, stn_import_num, min_timestamp) {
       )
     }
   )
-
-
   # Stick import number in first spot
   out_dat <- append(unlist(out_dat), import_num, after = 0)
 
